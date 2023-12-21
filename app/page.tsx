@@ -2,11 +2,13 @@
 import Image from 'next/image'
 import SignInComponent from '@components/SignIn'
 import { SessionProvider } from 'next-auth/react'
+import Nav from '@components/Navbar'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="h-full w-full">
       <SessionProvider>
+        <Nav />
         <SignInComponent />
       </SessionProvider>{' '}
     </main>
