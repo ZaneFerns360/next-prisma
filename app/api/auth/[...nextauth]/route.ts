@@ -29,6 +29,9 @@ declare module 'next-auth' {
 }
 
 export const authOptions: NextAuthOptions = {
+  theme: {
+    logo: 'https://next-auth.js.org/img/logo/logo-sm.png',
+  },
   session: {
     // Choose how you want to save the user session.
     // The default is `"jwt"`, an encrypted JWT (JWE) stored in the session cookie.

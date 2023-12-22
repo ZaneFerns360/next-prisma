@@ -7,6 +7,7 @@ import {
   NavbarLink,
   NavbarToggle,
 } from 'flowbite-react'
+import { getServerAuthSession } from '@app/api/auth/[...nextauth]/route'
 
 interface NavbarProps {
   children?: React.ReactNode
@@ -14,7 +15,9 @@ interface NavbarProps {
   rounded?: boolean
 }
 
-const Nav: React.FC<NavbarProps> = () => {
+async function Nav() {
+  const session = await getServerAuthSession()
+
   return (
     <div className="w-full bg-blue-700">
       <Navbar fluid rounded>
@@ -44,6 +47,10 @@ const Nav: React.FC<NavbarProps> = () => {
           <NavbarLink href="#">Services</NavbarLink>
           <NavbarLink href="#">Pricing</NavbarLink>
           <NavbarLink href="#">Contact</NavbarLink>
+          <NavbarLink href={session ? '/api/auth/signout' : '/api/auth/signin'}>
+            {' '}
+            {session ? 'Sign out' : 'Sign in'}
+          </NavbarLink>
         </NavbarCollapse>
       </Navbar>
     </div>
